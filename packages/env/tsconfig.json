@@ -1,0 +1,3 @@
+{
+  "extends": "@reetlab-new/config/tsconfig.base.json"
+}
