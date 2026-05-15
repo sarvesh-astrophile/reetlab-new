@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 const html = String.raw;
 
@@ -57,6 +58,73 @@ function HomeComponent() {
 		},
 	];
 
+	const [pricingTab, setPricingTab] = useState("Landing Page");
+
+	const pricing = {
+		"Landing Page": {
+			title: "Landing Page",
+			subtitle: "Revamp",
+			description:
+				"Redesigning your landing page to be more conversion-friendly, visually engaging, and built around customer objections.",
+			price: "$299",
+			delivery: "7 Days",
+			deliverables: [
+				"Custom wireframe & layout",
+				"Desktop, tablet, mobile responsive",
+				"Figma file with all components",
+				"Unlimited revisions",
+				"Updates every 48 hours",
+			],
+			addons: [
+				{ label: "Add Development", price: "+$799" },
+				{ label: "Extra Pages", price: "+$200/page" },
+				{ label: "Animations", price: "+$300/page" },
+			],
+		},
+		"Marketplace Listing": {
+			title: "Marketplace Listing",
+			subtitle: "Revamp",
+			description:
+				"Rebuilding your marketplace listing to stand out, build trust, and compete with category leaders.",
+			price: "$349",
+			delivery: "10 Days",
+			deliverables: [
+				"Custom listing layout & design",
+				"Screenshot redesign",
+				"Copy rewrite for all sections",
+				"Figma file with all assets",
+				"A/B test variant included",
+			],
+			addons: [
+				{ label: "Add Development", price: "+$799" },
+				{ label: "Extra Screens", price: "+$150/screen" },
+				{ label: "Video Preview", price: "+$500" },
+			],
+		},
+		"Onboarding Audit": {
+			title: "Onboarding",
+			subtitle: "Audit & Fix",
+			description:
+				"Mapping your first-run experience, finding where users drop off, and redesigning the flow to boost activation.",
+			price: "$499",
+			delivery: "14 Days",
+			deliverables: [
+				"Full onboarding audit report",
+				"User flow mapping & analysis",
+				"Redesigned flow in Figma",
+				"In-app copy & microcopy",
+				"Activation metrics tracked",
+			],
+			addons: [
+				{ label: "Add Development", price: "+$1,299" },
+				{ label: "User Testing", price: "+$500" },
+				{ label: "Analytics Dashboard", price: "+$800" },
+			],
+		},
+	};
+
+	const active = pricing[pricingTab];
+
 	return (
 		<>
 			<motion.section
@@ -89,7 +157,10 @@ function HomeComponent() {
 					teams. We design landing pages, marketplace listings, and onboarding
 					flows that turn browsers into buyers.
 				</motion.p>
-				<motion.div variants={fadeUp} className="relative z-10 mt-10 flex items-center gap-4">
+				<motion.div
+					variants={fadeUp}
+					className="relative z-10 mt-10 flex items-center gap-4"
+				>
 					<Link
 						to="/contact"
 						className="inline-flex items-center gap-2 rounded-full bg-primary py-3 pr-4 pl-5 font-normal text-base text-primary-foreground transition-opacity hover:opacity-90"
@@ -124,7 +195,7 @@ function HomeComponent() {
 
 			<section className="border-neutral-200 border-t bg-background px-6 py-24">
 				<div className="mx-auto max-w-3xl">
-					<span className="font-medium text-sm text-primary uppercase tracking-wider">
+					<span className="font-medium text-primary text-sm uppercase tracking-wider">
 						The problem
 					</span>
 					<h3 className="mt-4 text-pretty font-serif text-4xl text-foreground leading-snug tracking-tight md:text-5xl">
@@ -145,15 +216,7 @@ function HomeComponent() {
 											clipRule="evenodd"
 										/>
 									</svg>
-							<Link
-								to="/contact"
-								className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 font-normal text-base text-primary-foreground transition-opacity hover:opacity-90"
-							>
-								Let&apos;s find what&apos;s leaking
-								<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-									<path fillRule="evenodd" d="M16.72 7.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1 0 1.06l-3.75 3.75a.75.75 0 1 1-1.06-1.06l2.47-2.47H3a.75.75 0 0 1 0-1.5h16.19l-2.47-2.47a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" />
-								</svg>
-							</Link>
+								</div>
 								<p className="text-pretty text-foreground text-xl">
 									<strong>
 										<span
@@ -187,7 +250,7 @@ function HomeComponent() {
 
 			<section className="px-6 py-24">
 				<div className="mx-auto max-w-5xl bg-white p-12">
-					<span className="font-medium text-sm text-primary uppercase tracking-wider">
+					<span className="font-medium text-primary text-sm uppercase tracking-wider">
 						How we help
 					</span>
 					<h3 className="mt-4 text-pretty font-serif text-4xl text-foreground leading-snug tracking-tight md:text-5xl">
@@ -197,14 +260,19 @@ function HomeComponent() {
 					<div className="mt-14 grid gap-8 md:grid-cols-3">
 						<div className="border border-border bg-muted/30 p-6">
 							<div className="mb-4 flex size-10 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-								<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+								<svg
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="currentColor"
+								>
 									<path d="M5.566 4.657A4.505 4.505 0 0 1 6.75 4.5h10.5c.41 0 .806.055 1.183.157A3 3 0 0 0 15.75 3h-7.5a3 3 0 0 0-2.684 1.657ZM2.25 12a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3v-6ZM5.25 7.5c-.41 0-.806.055-1.184.157A3 3 0 0 1 6.75 6h10.5a3 3 0 0 1 2.683 1.657A4.505 4.505 0 0 0 18.75 7.5H5.25Z" />
 								</svg>
 							</div>
 							<h4 className="font-semibold text-foreground text-xl">
 								Landing Pages
 							</h4>
-							<p className="mt-3 text-muted-foreground text-base/relaxed">
+							<p className="mt-3 text-base/relaxed text-muted-foreground">
 								We rewrite and redesign around the objections that make people
 								bounce.
 							</p>
@@ -212,15 +280,24 @@ function HomeComponent() {
 
 						<div className="border border-border bg-muted/30 p-6">
 							<div className="mb-4 flex size-10 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-								<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+								<svg
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="currentColor"
+								>
 									<path d="M5.223 2.25c-.497 0-.974.198-1.325.55l-1.3 1.298A3.75 3.75 0 0 0 7.5 9.75c.627.47 1.406.75 2.25.75.844 0 1.624-.28 2.25-.75.626.47 1.406.75 2.25.75.844 0 1.623-.28 2.25-.75a3.75 3.75 0 0 0 4.902-5.652l-1.3-1.299a1.875 1.875 0 0 0-1.325-.549H5.223Z" />
-									<path fillRule="evenodd" d="M3 20.25v-8.755c1.42.674 3.08.673 4.5 0A5.234 5.234 0 0 0 9.75 12c.804 0 1.568-.182 2.25-.506a5.234 5.234 0 0 0 2.25.506c.804 0 1.567-.182 2.25-.506 1.42.674 3.08.675 4.5.001v8.755h.75a.75.75 0 0 1 0 1.5H2.25a.75.75 0 0 1 0-1.5H3Zm3-6a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-.75.75h-3a.75.75 0 0 1-.75-.75v-3Zm8.25-.75a.75.75 0 0 0-.75.75v5.25c0 .414.336.75.75.75h3a.75.75 0 0 0 .75-.75v-5.25a.75.75 0 0 0-.75-.75h-3Z" clipRule="evenodd" />
+									<path
+										fillRule="evenodd"
+										d="M3 20.25v-8.755c1.42.674 3.08.673 4.5 0A5.234 5.234 0 0 0 9.75 12c.804 0 1.568-.182 2.25-.506a5.234 5.234 0 0 0 2.25.506c.804 0 1.567-.182 2.25-.506 1.42.674 3.08.675 4.5.001v8.755h.75a.75.75 0 0 1 0 1.5H2.25a.75.75 0 0 1 0-1.5H3Zm3-6a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-.75.75h-3a.75.75 0 0 1-.75-.75v-3Zm8.25-.75a.75.75 0 0 0-.75.75v5.25c0 .414.336.75.75.75h3a.75.75 0 0 0 .75-.75v-5.25a.75.75 0 0 0-.75-.75h-3Z"
+										clipRule="evenodd"
+									/>
 								</svg>
 							</div>
 							<h4 className="font-semibold text-foreground text-xl">
 								Marketplace Listings
 							</h4>
-							<p className="mt-3 text-muted-foreground text-base/relaxed">
+							<p className="mt-3 text-base/relaxed text-muted-foreground">
 								We rebuild your listing to steal clicks from the category
 								leaders.
 							</p>
@@ -228,14 +305,23 @@ function HomeComponent() {
 
 						<div className="border border-border bg-muted/30 p-6">
 							<div className="mb-4 flex size-10 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-								<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-									<path fillRule="evenodd" d="M17.303 5.197A7.5 7.5 0 0 0 6.697 15.803a.75.75 0 0 1-1.061 1.061A9 9 0 1 1 21 10.5a.75.75 0 0 1-1.5 0c0-1.92-.732-3.839-2.197-5.303Zm-2.121 2.121a4.5 4.5 0 0 0-6.364 6.364.75.75 0 1 1-1.06 1.06A6 6 0 1 1 18 10.5a.75.75 0 0 1-1.5 0c0-1.153-.44-2.303-1.318-3.182Zm-3.634 1.314a.75.75 0 0 1 .82.311l5.228 7.917a.75.75 0 0 1-.777 1.148l-2.097-.43 1.045 3.9a.75.75 0 0 1-1.45.388l-1.044-3.899-1.601 1.42a.75.75 0 0 1-1.247-.606l.569-9.47a.75.75 0 0 1 .554-.68Z" clipRule="evenodd" />
+								<svg
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="currentColor"
+								>
+									<path
+										fillRule="evenodd"
+										d="M17.303 5.197A7.5 7.5 0 0 0 6.697 15.803a.75.75 0 0 1-1.061 1.061A9 9 0 1 1 21 10.5a.75.75 0 0 1-1.5 0c0-1.92-.732-3.839-2.197-5.303Zm-2.121 2.121a4.5 4.5 0 0 0-6.364 6.364.75.75 0 1 1-1.06 1.06A6 6 0 1 1 18 10.5a.75.75 0 0 1-1.5 0c0-1.153-.44-2.303-1.318-3.182Zm-3.634 1.314a.75.75 0 0 1 .82.311l5.228 7.917a.75.75 0 0 1-.777 1.148l-2.097-.43 1.045 3.9a.75.75 0 0 1-1.45.388l-1.044-3.899-1.601 1.42a.75.75 0 0 1-1.247-.606l.569-9.47a.75.75 0 0 1 .554-.68Z"
+										clipRule="evenodd"
+									/>
 								</svg>
 							</div>
 							<h4 className="font-semibold text-foreground text-xl">
 								Onboarding
 							</h4>
-							<p className="mt-3 text-muted-foreground text-base/relaxed">
+							<p className="mt-3 text-base/relaxed text-muted-foreground">
 								We map the drop-offs and redesign the flow so users activate
 								instead of ghosting.
 							</p>
@@ -248,8 +334,17 @@ function HomeComponent() {
 							className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 font-normal text-base text-primary-foreground transition-opacity hover:opacity-90"
 						>
 							Let&apos;s fix yours next
-							<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-								<path fillRule="evenodd" d="M16.72 7.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1 0 1.06l-3.75 3.75a.75.75 0 1 1-1.06-1.06l2.47-2.47H3a.75.75 0 0 1 0-1.5h16.19l-2.47-2.47a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" />
+							<svg
+								width="18"
+								height="18"
+								viewBox="0 0 24 24"
+								fill="currentColor"
+							>
+								<path
+									fillRule="evenodd"
+									d="M16.72 7.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1 0 1.06l-3.75 3.75a.75.75 0 1 1-1.06-1.06l2.47-2.47H3a.75.75 0 0 1 0-1.5h16.19l-2.47-2.47a.75.75 0 0 1 0-1.06Z"
+									clipRule="evenodd"
+								/>
 							</svg>
 						</Link>
 					</div>
@@ -260,8 +355,18 @@ function HomeComponent() {
 				<div className="mx-auto max-w-3xl text-center">
 					<div className="mb-6 flex items-center justify-center gap-1 text-primary">
 						{[...Array(5)].map((_, i) => (
-							<svg key={i} width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-								<path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clipRule="evenodd" />
+							<svg
+								key={i}
+								width="20"
+								height="20"
+								viewBox="0 0 24 24"
+								fill="currentColor"
+							>
+								<path
+									fillRule="evenodd"
+									d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
+									clipRule="evenodd"
+								/>
 							</svg>
 						))}
 					</div>
@@ -284,7 +389,7 @@ function HomeComponent() {
 						."
 					</blockquote>
 					<div className="mt-6">
-						<p className="font-medium text-foreground text-base">
+						<p className="font-medium text-base text-foreground">
 							Dr. Benubrata Das
 						</p>
 						<p className="text-muted-foreground text-sm">
@@ -296,7 +401,7 @@ function HomeComponent() {
 
 			<section className="px-6 py-24">
 				<div className="mx-auto max-w-5xl">
-					<span className="font-medium text-sm text-primary uppercase tracking-wider">
+					<span className="font-medium text-primary text-sm uppercase tracking-wider">
 						The difference
 					</span>
 					<div className="mt-4 grid gap-12 md:grid-cols-2">
@@ -304,26 +409,44 @@ function HomeComponent() {
 							<h2 className="text-pretty font-serif text-4xl text-foreground leading-snug tracking-tight md:text-5xl">
 								We track conversion. Others just ship and hope.
 							</h2>
-							<p className="mt-6 max-w-lg text-muted-foreground text-lg/relaxed">
+							<p className="mt-6 max-w-lg text-lg/relaxed text-muted-foreground">
 								Our unfair advantage: we stay until the numbers move. Every
 								project includes conversion tracking setup so you know exactly
 								what your design investment returned.
 							</p>
+							<Link
+								to="/contact"
+								className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 font-normal text-base text-primary-foreground transition-opacity hover:opacity-90"
+							>
+								Let&apos;s find what&apos;s leaking
+								<svg
+									width="18"
+									height="18"
+									viewBox="0 0 24 24"
+									fill="currentColor"
+								>
+									<path
+										fillRule="evenodd"
+										d="M16.72 7.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1 0 1.06l-3.75 3.75a.75.75 0 1 1-1.06-1.06l2.47-2.47H3a.75.75 0 0 1 0-1.5h16.19l-2.47-2.47a.75.75 0 0 1 0-1.06Z"
+										clipRule="evenodd"
+									/>
+								</svg>
+							</Link>
 						</div>
 
 						<div className="rounded-lg border border-border bg-[#FBF9FA] p-6">
-							<div className="mb-5 flex h-48 items-center justify-center rounded-md border border-dashed border-border bg-muted/30 text-muted-foreground text-sm">
+							<div className="mb-5 flex h-48 items-center justify-center rounded-md border border-border border-dashed bg-muted/30 text-muted-foreground text-sm">
 								Screenshot placeholder
 							</div>
 							<div className="flex items-start justify-between">
 								<h4 className="font-semibold text-foreground text-lg">
 									Landing Page Redesign
 								</h4>
-								<span className="font-bold font-serif text-3xl tracking-wide text-primary">
+								<span className="font-bold font-serif text-3xl text-primary tracking-wide">
 									2x
 								</span>
 							</div>
-							<p className="mt-4 text-muted-foreground text-base/relaxed">
+							<p className="mt-4 text-base/relaxed text-muted-foreground">
 								Redesigned a micro-SaaS homepage focusing on social proof and
 								CTA clarity. Conversion rate doubled in 3 weeks.
 							</p>
@@ -332,6 +455,115 @@ function HomeComponent() {
 				</div>
 			</section>
 
+			<section className="bg-white px-6 py-24">
+				<div className="mx-auto max-w-4xl">
+					<span className="font-medium text-primary text-sm uppercase tracking-wider">
+						Pricing
+					</span>
+					<h2 className="mt-4 text-pretty font-serif text-4xl text-foreground leading-snug tracking-tight md:text-5xl">
+						One service, clear price.
+					</h2>
+
+					<div className="mt-6 flex flex-wrap gap-2">
+						{Object.keys(pricing).map((tab) => (
+							<button
+								type="button"
+								key={tab}
+								onClick={() => setPricingTab(tab)}
+								className={
+									tab === pricingTab
+										? "rounded-full bg-foreground px-4 py-2 font-medium text-background text-sm transition-colors"
+										: "rounded-full bg-muted px-4 py-2 font-medium text-muted-foreground text-sm transition-colors hover:bg-muted/70"
+								}
+							>
+								{tab}
+							</button>
+						))}
+					</div>
+
+					<div className="mt-10 grid gap-6 overflow-hidden rounded-2xl border border-border bg-[#FBF9FA] p-6 md:grid-cols-2 md:p-8">
+						<div className="flex flex-col gap-4">
+							<div className="flex items-center gap-2.5">
+								<h3 className="font-extrabold text-2xl text-foreground uppercase tracking-tight">
+									{active.title}
+								</h3>
+								<span className="rounded-md border border-border px-2.5 py-1 font-medium text-muted-foreground text-xs">
+									{active.delivery}
+								</span>
+							</div>
+
+							<div className="flex flex-col gap-3">
+								{active.addons.map((addon) => (
+									<div
+										key={addon.label}
+										className="flex items-center justify-between rounded-xl bg-muted/60 p-3"
+									>
+										<span className="font-medium text-foreground text-sm">
+											{addon.label}
+										</span>
+										<span className="font-extrabold text-muted-foreground text-sm">
+											{addon.price}
+										</span>
+									</div>
+								))}
+							</div>
+
+							<div className="flex flex-col gap-2.5">
+								{active.deliverables.map((item) => (
+									<div key={item} className="flex items-center gap-2">
+										<svg
+											width="18"
+											height="18"
+											viewBox="0 0 256 256"
+											fill="currentColor"
+											className="shrink-0 text-green-600"
+										>
+											<path d="M232.49 80.49l-128 128a12 12 0 0 1-17 0l-56-56a12 12 0 1 1 17-17L96 183 215.51 63.51a12 12 0 0 1 17 17Z" />
+										</svg>
+										<span className="font-medium text-foreground text-sm">
+											{item}
+										</span>
+									</div>
+								))}
+							</div>
+						</div>
+
+						<div className="flex flex-col justify-between rounded-2xl border border-border bg-primary/5 p-6">
+							<div>
+								<span className="font-bold font-mono text-primary text-sm uppercase tracking-widest">
+									{active.title} Design
+								</span>
+								<p className="mt-1 font-extrabold text-[40px] text-primary leading-none tracking-tight">
+									{active.price}
+								</p>
+								<p className="mt-3 text-muted-foreground text-sm/relaxed">
+									{active.description}
+								</p>
+							</div>
+							<div className="mt-8">
+								<Link
+									to="/contact"
+									className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-foreground py-3 font-medium text-background text-sm transition-opacity hover:opacity-90"
+								>
+									Send a Message
+									<svg
+										width="16"
+										height="16"
+										viewBox="0 0 24 24"
+										fill="currentColor"
+									>
+										<path
+											fillRule="evenodd"
+											d="M16.72 7.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1 0 1.06l-3.75 3.75a.75.75 0 1 1-1.06-1.06l2.47-2.47H3a.75.75 0 0 1 0-1.5h16.19l-2.47-2.47a.75.75 0 0 1 0-1.06Z"
+											clipRule="evenodd"
+										/>
+									</svg>
+								</Link>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
 		</>
 	);
 }
