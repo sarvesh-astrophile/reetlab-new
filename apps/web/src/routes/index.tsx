@@ -77,7 +77,6 @@ function HomeComponent() {
 			],
 			addons: [
 				{ label: "Add Development", price: "+$799" },
-				{ label: "Extra Pages", price: "+$200/page" },
 				{ label: "Animations", price: "+$300/page" },
 			],
 		},
@@ -97,7 +96,6 @@ function HomeComponent() {
 			],
 			addons: [
 				{ label: "Add Development", price: "+$799" },
-				{ label: "Extra Screens", price: "+$150/screen" },
 				{ label: "Video Preview", price: "+$500" },
 			],
 		},
@@ -117,8 +115,6 @@ function HomeComponent() {
 			],
 			addons: [
 				{ label: "Add Development", price: "+$1,299" },
-				{ label: "User Testing", price: "+$500" },
-				{ label: "Analytics Dashboard", price: "+$800" },
 			],
 		},
 	};
@@ -481,13 +477,16 @@ function HomeComponent() {
 						))}
 					</div>
 
-					<div className="mt-10 grid gap-6 overflow-hidden rounded-2xl border border-border bg-[#FBF9FA] p-6 md:grid-cols-2 md:p-8">
-						<div className="flex flex-col gap-4">
+					<div className="mt-10 grid gap-6 overflow-hidden border border-border bg-white p-2 md:grid-cols-2 md:p-4">
+						<div className="flex flex-col gap-4 p-3 md:p-4">
 							<div className="flex items-center gap-2.5">
-								<h3 className="font-extrabold text-2xl text-foreground uppercase tracking-tight">
+								<h3 className="font-semibold text-2xl text-foreground uppercase tracking-normal">
 									{active.title}
 								</h3>
-								<span className="rounded-md border border-border px-2.5 py-1 font-medium text-muted-foreground text-xs">
+								<span className="inline-flex items-center gap-1 rounded-md border border-border px-2.5 py-1 font-medium text-muted-foreground text-xs">
+									<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-3.5">
+										<path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+									</svg>
 									{active.delivery}
 								</span>
 							</div>
@@ -528,37 +527,28 @@ function HomeComponent() {
 							</div>
 						</div>
 
-						<div className="flex flex-col justify-between rounded-2xl border border-border bg-primary/5 p-6">
-							<div>
-								<span className="font-bold font-mono text-primary text-sm uppercase tracking-widest">
-									{active.title} Design
-								</span>
-								<p className="mt-1 font-extrabold text-[40px] text-primary leading-none tracking-tight">
-									{active.price}
+						<div className="relative flex flex-col justify-center overflow-hidden border border-border bg-[#FBF9FA] p-6 text-center">
+							<div className="relative z-10 mx-auto max-w-xs">
+<h3 className="text-base font-normal text-neutral-600">
+									No subscriptions, no surprises.
+								</h3>
+								<p className="mt-6 flex items-baseline justify-center gap-x-2">
+									<span className="font-semibold text-5xl text-foreground tracking-tight">
+										{active.price}
+									</span>
+									<span className="font-medium text-muted-foreground text-sm tracking-wide">
+										USD
+									</span>
 								</p>
-								<p className="mt-3 text-muted-foreground text-sm/relaxed">
-									{active.description}
-								</p>
-							</div>
-							<div className="mt-8">
 								<Link
 									to="/contact"
-									className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-foreground py-3 font-medium text-background text-sm transition-opacity hover:opacity-90"
+									className="mt-10 block w-full rounded-full bg-foreground px-3 py-2.5 text-center font-medium text-background text-sm transition-opacity hover:opacity-90"
 								>
-									Send a Message
-									<svg
-										width="16"
-										height="16"
-										viewBox="0 0 24 24"
-										fill="currentColor"
-									>
-										<path
-											fillRule="evenodd"
-											d="M16.72 7.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1 0 1.06l-3.75 3.75a.75.75 0 1 1-1.06-1.06l2.47-2.47H3a.75.75 0 0 1 0-1.5h16.19l-2.47-2.47a.75.75 0 0 1 0-1.06Z"
-											clipRule="evenodd"
-										/>
-									</svg>
+									Send a message
 								</Link>
+								<p className="mt-6 text-muted-foreground text-xs">
+									Invoice provided. Reimbursement-friendly for teams.
+								</p>
 							</div>
 						</div>
 					</div>
