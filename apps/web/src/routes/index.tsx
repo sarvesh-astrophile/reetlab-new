@@ -1,6 +1,25 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 
+const html = String.raw;
+
+const noisePattern = `url("data:image/svg+xml;charset=utf-8,${encodeURIComponent(
+	html`
+		<svg xmlns="http://www.w3.org/2000/svg" width="250" height="250" viewBox="0 0 100 100">
+			<filter id="n">
+				<feTurbulence type="turbulence" baseFrequency="1.4" numOctaves="1" seed="2" stitchTiles="stitch" result="n" />
+				<feComponentTransfer result="g">
+					<feFuncR type="linear" slope="4" intercept="1" />
+					<feFuncG type="linear" slope="4" intercept="1" />
+					<feFuncB type="linear" slope="4" intercept="1" />
+				</feComponentTransfer>
+				<feColorMatrix type="saturate" values="0" in="g" />
+			</filter>
+			<rect width="100%" height="100%" filter="url(#n)" />
+		</svg>
+	`.replace(/\s+/g, " "),
+)}")`;
+
 const container = {
 	hidden: { opacity: 0 },
 	show: {
@@ -46,24 +65,31 @@ function HomeComponent() {
 				animate="show"
 				className="relative flex min-h-[calc(100svh-3.5rem)] flex-col items-center justify-center overflow-hidden bg-[#EFE7E5]/70 px-6 text-center backdrop-blur-sm"
 			>
+				<div
+					className="pointer-events-none absolute inset-0 mix-blend-overlay"
+					style={{
+						backgroundPosition: "center",
+						backgroundImage: noisePattern,
+					}}
+				/>
 				<div className="pointer-events-none absolute -bottom-48 -left-48 h-[600px] w-[600px] rounded-full bg-[radial-gradient(circle,_#FFB26A_0%,_transparent_70%)]" />
 				<motion.h1
 					variants={fadeUp}
-					className="font-medium font-serif text-6xl text-foreground leading-tight tracking-tighter sm:text-6xl md:text-7xl"
+					className="relative z-10 font-medium font-serif text-6xl text-foreground leading-tight tracking-tight sm:text-6xl md:text-7xl"
 				>
-					High-Converting Design
+					Your site isn&apos;t converting.
 					<br />
-					for Solo Founders &amp; Small Teams
+					Let&apos;s fix that.
 				</motion.h1>
 				<motion.p
 					variants={fadeUp}
-					className="mt-6 max-w-2xl text-base/7 text-muted-foreground md:text-lg/8"
+					className="relative z-10 mt-6 max-w-2xl text-base/7 text-muted-foreground md:text-lg/8"
 				>
-					We don&apos;t just make things pretty. We design landing pages,
-					marketplace listings, and onboarding flows that turn visitors into
-					customers — then we track what actually works.
+					ReetLab is a conversion design studio for solo founders and small
+					teams. We design landing pages, marketplace listings, and onboarding
+					flows that turn browsers into buyers.
 				</motion.p>
-				<motion.div variants={fadeUp} className="mt-10 flex items-center gap-4">
+				<motion.div variants={fadeUp} className="relative z-10 mt-10 flex items-center gap-4">
 					<Link
 						to="/contact"
 						className="inline-flex items-center gap-2 rounded-full bg-primary py-3 pr-4 pl-5 font-normal text-base text-primary-foreground transition-opacity hover:opacity-90"
@@ -75,7 +101,7 @@ function HomeComponent() {
 					</Link>
 					<Link
 						to="/results"
-						className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 font-normal text-base text-foreground transition-colors hover:bg-muted"
+						className="inline-flex items-center gap-2 rounded-full px-6 py-3 font-normal text-base text-foreground transition-colors hover:bg-muted"
 					>
 						Check our work
 						<svg
@@ -98,7 +124,7 @@ function HomeComponent() {
 
 			<section className="border-neutral-200 border-t bg-background px-6 py-24">
 				<div className="mx-auto max-w-3xl">
-					<span className="font-medium text-base text-primary uppercase tracking-wider">
+					<span className="font-medium text-sm text-primary uppercase tracking-wider">
 						The problem
 					</span>
 					<h3 className="mt-4 text-pretty font-serif text-4xl text-foreground leading-snug tracking-tight md:text-5xl">
@@ -119,7 +145,15 @@ function HomeComponent() {
 											clipRule="evenodd"
 										/>
 									</svg>
-								</div>
+							<Link
+								to="/contact"
+								className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 font-normal text-base text-primary-foreground transition-opacity hover:opacity-90"
+							>
+								Let&apos;s find what&apos;s leaking
+								<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+									<path fillRule="evenodd" d="M16.72 7.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1 0 1.06l-3.75 3.75a.75.75 0 1 1-1.06-1.06l2.47-2.47H3a.75.75 0 0 1 0-1.5h16.19l-2.47-2.47a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" />
+								</svg>
+							</Link>
 								<p className="text-pretty text-foreground text-xl">
 									<strong>
 										<span
@@ -150,6 +184,154 @@ function HomeComponent() {
 					</div>
 				</div>
 			</section>
+
+			<section className="px-6 py-24">
+				<div className="mx-auto max-w-5xl bg-white p-12">
+					<span className="font-medium text-sm text-primary uppercase tracking-wider">
+						How we help
+					</span>
+					<h3 className="mt-4 text-pretty font-serif text-4xl text-foreground leading-snug tracking-tight md:text-5xl">
+						Every customer you&apos;re losing has a reason. We fix three.
+					</h3>
+
+					<div className="mt-14 grid gap-8 md:grid-cols-3">
+						<div className="border border-border bg-muted/30 p-6">
+							<div className="mb-4 flex size-10 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+								<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+									<path d="M5.566 4.657A4.505 4.505 0 0 1 6.75 4.5h10.5c.41 0 .806.055 1.183.157A3 3 0 0 0 15.75 3h-7.5a3 3 0 0 0-2.684 1.657ZM2.25 12a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3v-6ZM5.25 7.5c-.41 0-.806.055-1.184.157A3 3 0 0 1 6.75 6h10.5a3 3 0 0 1 2.683 1.657A4.505 4.505 0 0 0 18.75 7.5H5.25Z" />
+								</svg>
+							</div>
+							<h4 className="font-semibold text-foreground text-xl">
+								Landing Pages
+							</h4>
+							<p className="mt-3 text-muted-foreground text-base/relaxed">
+								We rewrite and redesign around the objections that make people
+								bounce.
+							</p>
+						</div>
+
+						<div className="border border-border bg-muted/30 p-6">
+							<div className="mb-4 flex size-10 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+								<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+									<path d="M5.223 2.25c-.497 0-.974.198-1.325.55l-1.3 1.298A3.75 3.75 0 0 0 7.5 9.75c.627.47 1.406.75 2.25.75.844 0 1.624-.28 2.25-.75.626.47 1.406.75 2.25.75.844 0 1.623-.28 2.25-.75a3.75 3.75 0 0 0 4.902-5.652l-1.3-1.299a1.875 1.875 0 0 0-1.325-.549H5.223Z" />
+									<path fillRule="evenodd" d="M3 20.25v-8.755c1.42.674 3.08.673 4.5 0A5.234 5.234 0 0 0 9.75 12c.804 0 1.568-.182 2.25-.506a5.234 5.234 0 0 0 2.25.506c.804 0 1.567-.182 2.25-.506 1.42.674 3.08.675 4.5.001v8.755h.75a.75.75 0 0 1 0 1.5H2.25a.75.75 0 0 1 0-1.5H3Zm3-6a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-.75.75h-3a.75.75 0 0 1-.75-.75v-3Zm8.25-.75a.75.75 0 0 0-.75.75v5.25c0 .414.336.75.75.75h3a.75.75 0 0 0 .75-.75v-5.25a.75.75 0 0 0-.75-.75h-3Z" clipRule="evenodd" />
+								</svg>
+							</div>
+							<h4 className="font-semibold text-foreground text-xl">
+								Marketplace Listings
+							</h4>
+							<p className="mt-3 text-muted-foreground text-base/relaxed">
+								We rebuild your listing to steal clicks from the category
+								leaders.
+							</p>
+						</div>
+
+						<div className="border border-border bg-muted/30 p-6">
+							<div className="mb-4 flex size-10 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+								<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+									<path fillRule="evenodd" d="M17.303 5.197A7.5 7.5 0 0 0 6.697 15.803a.75.75 0 0 1-1.061 1.061A9 9 0 1 1 21 10.5a.75.75 0 0 1-1.5 0c0-1.92-.732-3.839-2.197-5.303Zm-2.121 2.121a4.5 4.5 0 0 0-6.364 6.364.75.75 0 1 1-1.06 1.06A6 6 0 1 1 18 10.5a.75.75 0 0 1-1.5 0c0-1.153-.44-2.303-1.318-3.182Zm-3.634 1.314a.75.75 0 0 1 .82.311l5.228 7.917a.75.75 0 0 1-.777 1.148l-2.097-.43 1.045 3.9a.75.75 0 0 1-1.45.388l-1.044-3.899-1.601 1.42a.75.75 0 0 1-1.247-.606l.569-9.47a.75.75 0 0 1 .554-.68Z" clipRule="evenodd" />
+								</svg>
+							</div>
+							<h4 className="font-semibold text-foreground text-xl">
+								Onboarding
+							</h4>
+							<p className="mt-3 text-muted-foreground text-base/relaxed">
+								We map the drop-offs and redesign the flow so users activate
+								instead of ghosting.
+							</p>
+						</div>
+					</div>
+
+					<div className="mt-12 text-center">
+						<Link
+							to="/contact"
+							className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 font-normal text-base text-primary-foreground transition-opacity hover:opacity-90"
+						>
+							Let&apos;s fix yours next
+							<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+								<path fillRule="evenodd" d="M16.72 7.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1 0 1.06l-3.75 3.75a.75.75 0 1 1-1.06-1.06l2.47-2.47H3a.75.75 0 0 1 0-1.5h16.19l-2.47-2.47a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" />
+							</svg>
+						</Link>
+					</div>
+				</div>
+			</section>
+
+			<section className="px-6 py-12">
+				<div className="mx-auto max-w-3xl text-center">
+					<div className="mb-6 flex items-center justify-center gap-1 text-primary">
+						{[...Array(5)].map((_, i) => (
+							<svg key={i} width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+								<path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clipRule="evenodd" />
+							</svg>
+						))}
+					</div>
+					<blockquote className="text-pretty font-serif text-3xl text-foreground leading-relaxed tracking-normal md:text-4xl">
+						"We hired ReetLab to fix our landing page and they ended up finding
+						leaks across our entire funnel. They don&apos;t just design —{" "}
+						<span
+							className="lr-highlight"
+							style={{ backgroundColor: "#ffe5e5" }}
+						>
+							they diagnose
+						</span>
+						. Every change they made was{" "}
+						<span
+							className="lr-highlight"
+							style={{ backgroundColor: "#ffe5e5" }}
+						>
+							backed by data
+						</span>
+						."
+					</blockquote>
+					<div className="mt-6">
+						<p className="font-medium text-foreground text-base">
+							Dr. Benubrata Das
+						</p>
+						<p className="text-muted-foreground text-sm">
+							Committee Member, Guha Research Conference
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<section className="px-6 py-24">
+				<div className="mx-auto max-w-5xl">
+					<span className="font-medium text-sm text-primary uppercase tracking-wider">
+						The difference
+					</span>
+					<div className="mt-4 grid gap-12 md:grid-cols-2">
+						<div>
+							<h2 className="text-pretty font-serif text-4xl text-foreground leading-snug tracking-tight md:text-5xl">
+								We track conversion. Others just ship and hope.
+							</h2>
+							<p className="mt-6 max-w-lg text-muted-foreground text-lg/relaxed">
+								Our unfair advantage: we stay until the numbers move. Every
+								project includes conversion tracking setup so you know exactly
+								what your design investment returned.
+							</p>
+						</div>
+
+						<div className="rounded-lg border border-border bg-[#FBF9FA] p-6">
+							<div className="mb-5 flex h-48 items-center justify-center rounded-md border border-dashed border-border bg-muted/30 text-muted-foreground text-sm">
+								Screenshot placeholder
+							</div>
+							<div className="flex items-start justify-between">
+								<h4 className="font-semibold text-foreground text-lg">
+									Landing Page Redesign
+								</h4>
+								<span className="font-bold font-serif text-3xl tracking-wide text-primary">
+									2x
+								</span>
+							</div>
+							<p className="mt-4 text-muted-foreground text-base/relaxed">
+								Redesigned a micro-SaaS homepage focusing on social proof and
+								CTA clarity. Conversion rate doubled in 3 weeks.
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
 		</>
 	);
 }

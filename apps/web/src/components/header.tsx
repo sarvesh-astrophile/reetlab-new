@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 
-export default function Header() {
+export default function NavBar() {
 	const links = [
 		{ to: "/about", label: "About" },
 		{ to: "/services", label: "Services" },
@@ -9,7 +9,7 @@ export default function Header() {
 	] as const;
 
 	return (
-		<div className="sticky top-0 z-50 bg-[#EFE7E5] backdrop-blur-md">
+		<div className="sticky top-0 z-50 bg-[#F4EEEC] backdrop-blur-md">
 			<div className="mx-auto flex w-full max-w-6xl flex-row items-center justify-between px-6 py-3">
 				<Link to="/" className="flex items-center gap-2 font-semibold text-xl">
 					<svg width="28" height="28" viewBox="0 0 256 256" fill="currentColor">

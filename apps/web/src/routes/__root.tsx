@@ -7,7 +7,7 @@ import {
 } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 
-import Header from "../components/header";
+import NavBar from "../components/header";
 
 import appCss from "../index.css?url";
 
@@ -46,7 +46,7 @@ function RootDocument() {
 			</head>
 			<body>
 				<div className="grid min-h-svh grid-rows-[auto_1fr]">
-					<Header />
+					<NavBar />
 					<Outlet />
 				</div>
 				<Toaster richColors />
