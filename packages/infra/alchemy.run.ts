@@ -8,10 +8,10 @@ config({ path: "../../apps/web/.env" });
 const app = await alchemy("reetlab-new");
 
 export const web = await TanStackStart("web", {
-  cwd: "../../apps/web",
-  bindings: {
-    CORS_ORIGIN: alchemy.env.CORS_ORIGIN!,
-  },
+	cwd: "../../apps/web",
+	bindings: {
+		CORS_ORIGIN: alchemy.env.CORS_ORIGIN!,
+	},
 });
 
 console.log(`Web    -> ${web.url}`);
