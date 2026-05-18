@@ -16,22 +16,47 @@ export type RouterAppContext = {};
 export const Route = createRootRouteWithContext<RouterAppContext>()({
 	head: () => ({
 		meta: [
-			{
-				charSet: "utf-8",
-			},
+			{ charSet: "utf-8" },
 			{
 				name: "viewport",
 				content: "width=device-width, initial-scale=1",
 			},
 			{
-				title: "My App",
+				title: "ReetLab — Conversion Design for Solo Founders & Small Teams",
+			},
+			{
+				name: "description",
+				content:
+					"ReetLab is a conversion design studio. We design landing pages, marketplace listings, and onboarding flows that turn browsers into buyers. Fixed-price, no subscriptions.",
+			},
+			{ name: "author", content: "ReetLab" },
+			{ name: "robots", content: "index, follow" },
+			{ property: "og:type", content: "website" },
+			{
+				property: "og:title",
+				content: "ReetLab — Conversion Design for Solo Founders & Small Teams",
+			},
+			{
+				property: "og:description",
+				content:
+					"Landing pages, marketplace listings, and onboarding flows that turn browsers into buyers. Fixed-price, no subscriptions.",
+			},
+			{ property: "og:site_name", content: "ReetLab" },
+			{ property: "og:locale", content: "en_US" },
+			{ name: "twitter:card", content: "summary_large_image" },
+			{
+				name: "twitter:title",
+				content: "ReetLab — Conversion Design Studio",
+			},
+			{
+				name: "twitter:description",
+				content:
+					"Landing pages, marketplace listings, and onboarding flows that turn browsers into buyers.",
 			},
 		],
 		links: [
-			{
-				rel: "stylesheet",
-				href: appCss,
-			},
+			{ rel: "stylesheet", href: appCss },
+			{ rel: "canonical", href: "https://reetlab.com" },
 		],
 	}),
 
@@ -40,18 +65,20 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
 
 function RootDocument() {
 	return (
-		<html lang="en" className="dark">
+		<html lang="en" className="dark" suppressHydrationWarning>
 			<head>
 				<HeadContent />
 			</head>
 			<body>
 				<div className="grid min-h-svh grid-rows-[auto_1fr]">
 					<NavBar />
-					<Outlet />
+					<main>
+						<Outlet />
+					</main>
+					<Toaster richColors />
+					<TanStackRouterDevtools position="bottom-left" />
+					<Scripts />
 				</div>
-				<Toaster richColors />
-				<TanStackRouterDevtools position="bottom-left" />
-				<Scripts />
 			</body>
 		</html>
 	);
