@@ -22,7 +22,8 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
 				content: "width=device-width, initial-scale=1",
 			},
 			{
-				title: "ReetLab — Conversion Design for Solo Founders & Small Teams",
+				title:
+					"ReetLab — Conversion Design for Solo Founders & Small Teams",
 			},
 			{
 				name: "description",
@@ -34,13 +35,18 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
 			{ property: "og:type", content: "website" },
 			{
 				property: "og:title",
-				content: "ReetLab — Conversion Design for Solo Founders & Small Teams",
+				content:
+					"ReetLab — Conversion Design for Solo Founders & Small Teams",
 			},
 			{
 				property: "og:description",
 				content:
 					"Landing pages, marketplace listings, and onboarding flows that turn browsers into buyers. Fixed-price, no subscriptions.",
 			},
+			{ property: "og:image", content: "https://reetlab.com/og-image.jpg" },
+			{ property: "og:image:width", content: "1200" },
+			{ property: "og:image:height", content: "630" },
+			{ property: "og:image:type", content: "image/jpeg" },
 			{ property: "og:site_name", content: "ReetLab" },
 			{ property: "og:locale", content: "en_US" },
 			{ name: "twitter:card", content: "summary_large_image" },
@@ -53,9 +59,14 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
 				content:
 					"Landing pages, marketplace listings, and onboarding flows that turn browsers into buyers.",
 			},
+			{
+				name: "twitter:image",
+				content: "https://reetlab.com/og-image.jpg",
+			},
 		],
 		links: [
 			{ rel: "stylesheet", href: appCss },
+			{ rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
 			{ rel: "canonical", href: "https://reetlab.com" },
 		],
 	}),
